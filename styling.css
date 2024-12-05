@@ -1,74 +1,132 @@
 @import url(https://fonts.googleapis.com/css?family=VT323);
 
+/* Background Animation */
 .back {
-    background-image: linear-gradient(#130709, #0b1815);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+  background-image: linear-gradient(45deg, #130709, #0b1815);
+  background-size: 200% 200%;
+  animation: backgroundMove 15s ease infinite;
 }
 
-/*centers for images and text*/
+@keyframes backgroundMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Fog Effect */
+.back::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 300%; /* Increased width for smooth movement */
+  height: 100%;
+  background: url('file:///C:/Users/lwrig465/Documents/GitHub/Personal-Project/%E2%80%94Pngtree%E2%80%94fog%20png_7962365.png') repeat-x;
+  background-size: contain; /* Maintain proportions without stretching */
+  opacity: 0.1;
+  animation: moveFog 20s linear infinite;
+}
+
+@keyframes moveFog {
+  0% { transform: translateX(-33%); } /* Start slightly to the left */
+  100% { transform: translateX(0); } /* Move to the right */
+}
+
+/* Image Hover Effect */
 .imgcenter {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 55%;
-  }
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 55%;
+  transition: transform 0.3s ease-in-out; /* Add transition */
+}
+
+.imgcenter:hover {
+  transform: scale(1.05); /* Slight enlargement */
+  box-shadow: 0px 0px 15px #81460e;
+}
+
+/* Cursor Styling */
+body {
+  cursor: url('path-to-custom-cursor.png'), auto;
+}
+
+/* Centers for Images and Text */
 .center {
-    margin: auto;
-    margin-top: 40px;
-    margin-bottom: 20px;
-    width: 25%;
-    border: none;
-    padding: 10px;
+  margin: auto;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  width: 25%;
+  border: none;
+  padding: 10px;
 }
 
-/*text style*/
+/* Text Style */
 .neibolttxt {
-    color: #81460e;
-    font-family: 'VT323', monospace ;
-    font-size: 20px;
-    text-align: center;
-    text-shadow: 0px 2px 2px #6b2f15;
+  color: #81460e;
+  font-family: 'VT323', monospace;
+  font-size: 20px;
+  text-align: center;
+  text-shadow: 0px 2px 2px #6b2f15;
 }
 
-/*custom ridges for the boxes around the text in order to have the shadow of the ridge be prettier instead of shaded with black*/
+/* Custom Ridge Box */
 .custom-ridge {
-    position: relative;
-    padding: 35px;
-    background-color: #070000; /* Background inside the box */
-    border: 3px solid #a46c0e; /* Base border color */
-    box-shadow: inset 3px 3px #81460e, inset -3px -3px #6b2f15; /* Ridge effect */
-  }
-  
-  .custom-ridge::before {
-    content: '';
-    position: absolute;
-    top: -4px;
-    left: -4px;
-    right: -4px;
-    bottom: -4px;
-    border: 4px solid #a46c0e; /* Adjust to match the ridge effect */
-    box-shadow: inset 5px 5px #81460e, inset -5px -5px #6b2f15; /* Light (left) and dark shading (right) */
-    z-index: -1; /* Behind the element */
-  }
-
-/*buttons*/
-.enterbtn {
-    color: #81460e;
-    font-family: 'VT323', monospace ;
-    font-size: 30px;
-    text-align: center;
-    text-shadow: 0px 2px 2px #6b2f15;
-    padding: 25px 50px;
-    transition: .5s;
-    display: block;
-    margin-top: 30px;
-    margin-left: auto;
-    margin-right: auto;
-    cursor: pointer;
+  position: relative;
+  padding: 35px;
+  background-color: #070000; /* Background inside the box */
+  border: 3px solid #a46c0e; /* Base border color */
+  box-shadow: inset 3px 3px #81460e, inset -3px -3px #6b2f15; /* Ridge effect */
 }
-  
+
+.custom-ridge::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border: 4px solid #a46c0e; /* Adjust to match the ridge effect */
+  box-shadow: inset 5px 5px #81460e, inset -5px -5px #6b2f15; /* Light (left) and dark shading (right) */
+  z-index: -1; /* Behind the element */
+}
+
+/* Floating effect class */
+.float-box {
+  position: relative;
+  animation: floatAnimation 3s ease-in-out infinite; /* Apply the floating animation */
+}
+
+/* Keyframes for floating animation */
+@keyframes floatAnimation {
+  0% {
+    transform: translateY(0); /* Start position */
+  }
+  50% {
+    transform: translateY(-2px); /* Move up slightly */
+  }
+  100% {
+    transform: translateY(0); /* Return to the original position */
+  }
+}
+
+/* Button Hover Effects */
+.enterbtn {
+  color: #81460e;
+  font-family: 'VT323', monospace;
+  font-size: 30px;
+  text-align: center;
+  text-shadow: 0px 2px 2px #6b2f15;
+  padding: 25px 50px;
+  transition: transform 0.5s, box-shadow 0.5s;
+  display: block;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: pointer;
+}
+
 .enterbtn:hover {
-    transform: scale(1.1);
-    cursor: pointer;
+  transform: scale(1.1);
+  box-shadow: 0 0 15px #81460e, 0 0 30px #a46c0e;
 }
